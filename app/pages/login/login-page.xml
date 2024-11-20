@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Login" class="action-bar" />
+    
+    <StackLayout class="page-content">
+        <Image src="~/images/logo.png" class="logo" width="120" height="120" />
+        <Label text="Welcome Back" class="header-text text-center" />
+        <Label text="Sign in to manage your finances" class="sub-text text-center" />
+        
+        <GridLayout rows="auto, auto, auto" columns="*" class="form" margin="24 0">
+            <StackLayout row="0" class="input-field">
+                <Label text="Email" class="input-label" />
+                <TextField hint="Enter your email" text="{{ email }}" keyboardType="email" autocorrect="false" autocapitalizationType="none" />
+            </StackLayout>
+            
+            <StackLayout row="1" class="input-field">
+                <Label text="Password" class="input-label" />
+                <TextField hint="Enter your password" text="{{ password }}" secure="true" />
+            </StackLayout>
+            
+            <Button row="2" text="Sign In" tap="{{ onSignIn }}" class="btn btn-primary" />
+        </GridLayout>
+        
+        <StackLayout class="social-login">
+            <Label text="Or continue with" class="text-center" />
+            <Button text="Sign in with Google" tap="{{ onGoogleSignIn }}" class="btn btn-outline" />
+        </StackLayout>
+        
+        <Label class="sign-up-prompt">
+            <FormattedString>
+                <Span text="Don't have an account? " />
+                <Span text="Create Account" class="link" tap="{{ onCreateAccount }}" />
+            </FormattedString>
+        </Label>
+    </StackLayout>
+</Page>

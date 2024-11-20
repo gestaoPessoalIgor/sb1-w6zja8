@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Tarefas" class="action-bar">
+        <ActionItem tap="{{ onAddTask }}" ios.position="right" android.position="actionBar">
+            <Label text="+" class="add-button" />
+        </ActionItem>
+    </ActionBar>
+    
+    <ListView items="{{ tasks }}" class="task-list">
+        <ListView.itemTemplate>
+            <GridLayout columns="*" rows="auto" class="task-item card">
+                <StackLayout>
+                    <!-- Cabeçalho da Tarefa -->
+                    <GridLayout columns="*, auto" class="task-header">
+                        <Label col="0" text="{{ title }}" class="task-title" />
+                        <Label col="1" text="{{ category }}" class="category-badge category-{{ categoryClass }}" />
+                    </GridLayout>
+                    
+                    <!-- Data e Hora -->
+                    <GridLayout columns="auto, auto" class="task-details">
+                        <Label col="0" text="{{ date }}" class="detail-text" />
+                        <Label col="1" text="{{ time }}" class="detail-text" visibility="{{ time ? 'visible' : 'collapsed' }}" />
+                    </GridLayout>
+                    
+                    <!-- Subtarefas -->
+                    <StackLayout class="subtasks-container" visibility="{{ subtasks.length > 0 ? 'visible' : 'collapsed' }}">
+                        <Repeater items="{{ subtasks }}">
+                            <Repeater.itemTemplate>
+                                <GridLayout columns="auto, *" class="subtask-item">
+                                    <CheckBox col="0" checked="{{ completed }}" tap="{{ $parents['ListView'].onToggleSubtask }}" />
+                                    <Label col="1" text="{{ text }}" class="{{ completed ? 'completed-subtask' : '' }}" />
+                                </GridLayout>
+                            </Repeater.itemTemplate>
+                        </Repeater>
+                    </StackLayout>
+                    
+                    <!-- Notas -->
+                    <Label text="{{ notes }}" class="task-notes" visibility="{{ notes ? 'visible' : 'collapsed' }}" textWrap="true" />
+                </StackLayout>
+            </GridLayout>
+        </ListView.itemTemplate>
+    </ListView>
+</Page>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Despesas" class="action-bar">
+        <ActionItem tap="{{ onAddExpense }}" ios.position="right" android.position="actionBar">
+            <Label text="+" class="add-button" />
+        </ActionItem>
+    </ActionBar>
+    
+    <GridLayout rows="auto, *">
+        <!-- Filtros -->
+        <GridLayout row="0" columns="*, *" class="filters">
+            <DropDown col="0" items="{{ categories }}" selectedIndex="{{ selectedCategoryIndex }}" />
+            <DropDown col="1" items="{{ months }}" selectedIndex="{{ selectedMonthIndex }}" />
+        </GridLayout>
+        
+        <!-- Lista de Despesas -->
+        <ListView row="1" items="{{ expenses }}" class="expense-list">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto" rows="auto, auto" class="expense-item card">
+                    <!-- Informações Principais -->
+                    <StackLayout col="0" row="0">
+                        <Label text="{{ description }}" class="expense-title" />
+                        <Label text="{{ 'R$ ' + amount }}" class="expense-amount" />
+                    </StackLayout>
+                    
+                    <!-- Categoria -->
+                    <Label col="1" row="0" text="{{ category }}" class="category-badge category-{{ categoryClass }}" />
+                    
+                    <!-- Detalhes -->
+                    <GridLayout col="0" row="1" columns="auto, auto" class="expense-details">
+                        <Label col="0" text="{{ date }}" class="detail-text" />
+                        <Label col="1" text="{{ paymentMethod }}" class="detail-text" />
+                    </GridLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

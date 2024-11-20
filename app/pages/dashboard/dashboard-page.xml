@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Dashboard" class="action-bar">
+        <ActionItem tap="{{ onProfileTap }}" ios.position="right" android.position="actionBar">
+            <Label text="👤" class="profile-icon" />
+        </ActionItem>
+    </ActionBar>
+    
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="page-content">
+                <!-- Monthly Expenses Chart -->
+                <CardView class="card chart-container">
+                    <StackLayout>
+                        <Label text="Monthly Expenses" class="card-title" />
+                        <ContentView class="chart">
+                            <!-- Chart will be rendered here -->
+                        </ContentView>
+                    </StackLayout>
+                </CardView>
+                
+                <!-- Current Balance -->
+                <CardView class="card balance-card">
+                    <StackLayout>
+                        <Label text="Current Balance" class="text-white" />
+                        <Label text="$2,450.00" class="balance-amount" />
+                        <Label text="Available" class="balance-subtitle" />
+                    </StackLayout>
+                </CardView>
+                
+                <!-- Expense Summary -->
+                <GridLayout columns="*, *" rows="auto" class="expense-summary">
+                    <CardView col="0" class="card">
+                        <StackLayout>
+                            <Label text="💳" class="icon" />
+                            <Label text="Debit" class="sub-text" />
+                            <Label text="$1,200.00" class="amount" />
+                        </StackLayout>
+                    </CardView>
+                    
+                    <CardView col="1" class="card">
+                        <StackLayout>
+                            <Label text="💰" class="icon" />
+                            <Label text="Credit" class="sub-text" />
+                            <Label text="$800.00" class="amount" />
+                        </StackLayout>
+                    </CardView>
+                </GridLayout>
+                
+                <!-- Upcoming Tasks -->
+                <CardView class="card">
+                    <StackLayout>
+                        <GridLayout columns="*, auto">
+                            <Label text="Upcoming Tasks" class="card-title" />
+                            <Label col="1" text="View All" class="link" tap="{{ onViewAllTasks }}" />
+                        </GridLayout>
+                        
+                        <ListView items="{{ upcomingTasks }}" height="300">
+                            <ListView.itemTemplate>
+                                <GridLayout columns="auto, *" class="task-item">
+                                    <StackLayout col="0" class="date-box">
+                                        <Label text="{{ date }}" />
+                                    </StackLayout>
+                                    <StackLayout col="1">
+                                        <Label text="{{ title }}" class="task-title" />
+                                        <Label text="{{ time }}" class="task-time" />
+                                    </StackLayout>
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </CardView>
+            </StackLayout>
+        </ScrollView>
+        
+        <!-- Bottom Navigation -->
+        <GridLayout row="1" columns="*, *, *, *" class="bottom-nav">
+            <StackLayout col="0" class="nav-item{{ currentTab === 'home' ? '-active' : '' }}" tap="{{ onTabSelect }}">
+                <Label text="🏠" />
+                <Label text="Home" />
+            </StackLayout>
+            <StackLayout col="1" class="nav-item{{ currentTab === 'tasks' ? '-active' : '' }}" tap="{{ onTabSelect }}">
+                <Label text="📅" />
+                <Label text="Tasks" />
+            </StackLayout>
+            <StackLayout col="2" class="nav-item{{ currentTab === 'expenses' ? '-active' : '' }}" tap="{{ onTabSelect }}">
+                <Label text="💵" />
+                <Label text="Expenses" />
+            </StackLayout>
+            <StackLayout col="3" class="nav-item{{ currentTab === 'reports' ? '-active' : '' }}" tap="{{ onTabSelect }}">
+                <Label text="📊" />
+                <Label text="Reports" />
+            </StackLayout>
+        </GridLayout>
+    </GridLayout>
+</Page>

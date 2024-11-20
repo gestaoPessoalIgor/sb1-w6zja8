@@ -1,0 +1,103 @@
+@import '@nativescript/theme/css/core.css';
+@import '@nativescript/theme/css/default.css';
+
+/* Estilos Globais */
+Page {
+    background-color: #f9fafb;
+}
+
+.page-content {
+    padding: 16;
+}
+
+.action-bar {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Cards e Containers */
+.card {
+    background-color: white;
+    border-radius: 12;
+    margin: 8;
+    padding: 16;
+    elevation: 2;
+}
+
+/* Relatórios */
+.period-selector {
+    margin-bottom: 16;
+}
+
+.total-expenses {
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    color: white;
+}
+
+.total-amount {
+    font-size: 32;
+    font-weight: bold;
+    margin-top: 8;
+}
+
+.card-title {
+    font-size: 18;
+    font-weight: 600;
+    margin-bottom: 16;
+    color: #1f2937;
+}
+
+.chart-container {
+    height: 200;
+    margin: 16 0;
+}
+
+/* Lista de Categorias */
+.category-item {
+    padding: 8 0;
+}
+
+.category-icon {
+    font-size: 20;
+    margin-right: 12;
+}
+
+.category-name {
+    font-size: 16;
+    color: #374151;
+}
+
+.category-amount {
+    font-size: 16;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Métodos de Pagamento */
+.payment-methods {
+    margin-top: 16;
+}
+
+.payment-method-card {
+    padding: 16;
+    margin: 4;
+    background-color: #f3f4f6;
+    border-radius: 8;
+}
+
+.payment-icon {
+    font-size: 24;
+    margin-bottom: 8;
+}
+
+.payment-label {
+    font-size: 14;
+    color: #6b7280;
+}
+
+.payment-amount {
+    font-size: 18;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 4;
+}

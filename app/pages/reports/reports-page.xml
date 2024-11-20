@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Relatórios" class="action-bar" />
+    
+    <ScrollView>
+        <StackLayout class="page-content">
+            <!-- Seletor de Período -->
+            <GridLayout columns="*, *" class="period-selector card">
+                <DropDown col="0" items="{{ months }}" selectedIndex="{{ selectedMonthIndex }}" />
+                <DropDown col="1" items="{{ years }}" selectedIndex="{{ selectedYearIndex }}" />
+            </GridLayout>
+            
+            <!-- Total de Gastos -->
+            <CardView class="card total-expenses">
+                <StackLayout>
+                    <Label text="Total de Gastos" class="card-title" />
+                    <Label text="{{ totalExpenses, 'R$ ' + '%.2f' }}" class="total-amount" />
+                </StackLayout>
+            </CardView>
+            
+            <!-- Gráfico de Categorias -->
+            <CardView class="card">
+                <StackLayout>
+                    <Label text="Gastos por Categoria" class="card-title" />
+                    <ContentView class="chart-container">
+                        <!-- O gráfico será renderizado aqui -->
+                    </ContentView>
+                    <ListView items="{{ categoryExpenses }}" height="200">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="auto, *, auto" class="category-item">
+                                <Label col="0" text="{{ icon }}" class="category-icon" />
+                                <Label col="1" text="{{ category }}" class="category-name" />
+                                <Label col="2" text="{{ 'R$ ' + amount }}" class="category-amount" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </CardView>
+            
+            <!-- Gastos por Método de Pagamento -->
+            <CardView class="card">
+                <StackLayout>
+                    <Label text="Método de Pagamento" class="card-title" />
+                    <GridLayout columns="*, *" rows="auto, auto" class="payment-methods">
+                        <!-- Crédito -->
+                        <StackLayout col="0" row="0" class="payment-method-card">
+                            <Label text="💳" class="payment-icon" />
+                            <Label text="Crédito" class="payment-label" />
+                            <Label text="{{ creditTotal, 'R$ ' + '%.2f' }}" class="payment-amount" />
+                        </StackLayout>
+                        
+                        <!-- Débito -->
+                        <StackLayout col="1" row="0" class="payment-method-card">
+                            <Label text="🏦" class="payment-icon" />
+                            <Label text="Débito" class="payment-label" />
+                            <Label text="{{ debitTotal, 'R$ ' + '%.2f' }}" class="payment-amount" />
+                        </StackLayout>
+                        
+                        <!-- Dinheiro -->
+                        <StackLayout col="0" row="1" class="payment-method-card">
+                            <Label text="💵" class="payment-icon" />
+                            <Label text="Dinheiro" class="payment-label" />
+                            <Label text="{{ cashTotal, 'R$ ' + '%.2f' }}" class="payment-amount" />
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </CardView>
+            
+            <!-- Comparação Mensal -->
+            <CardView class="card">
+                <StackLayout>
+                    <Label text="Comparação Mensal" class="card-title" />
+                    <ContentView class="chart-container">
+                        <!-- O gráfico de comparação será renderizado aqui -->
+                    </ContentView>
+                </StackLayout>
+            </CardView>
+        </StackLayout>
+    </ScrollView>
+</Page>
